@@ -37,7 +37,7 @@ def main():
     
     data = loadDataset(file)
     newdata = normilizeDataset(data)
-    newdata.to_csv('newdata.csv', encoding='utf-8', index=False)
+    newdata.to_csv('newdata.csv', encoding='utf-8', index=False, header=False)
 
 
 # In[ ]:
