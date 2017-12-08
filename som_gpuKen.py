@@ -108,12 +108,11 @@ class SOM:
                         for l in range(len(train_vector)/numBach):
                             singleDistIndex = misc.get_by_index(bmu_vec, np.array([l])) * numBach + l
                             closestDist = misc.get_by_index(dist_matrix, singleDistIndex) * alpha
+                            closestDistVec = gpuarray.to_gpu(np.full((1,28),closestDist)
                             startInd = misc.get_by_index(bmu_vec, np.array([l])).get()
-
                             updatePart = misc.get_by_index(self.d_nodes, np.array(range(startInd*self.FV_size,(startInd+1)*self.FV_size)))
-
-                            scr_gpu = 
-                            misc.set_by_index(self.d_nodes, index_gpu,) 
+                            scr_gpu = misc.add(closestDistVec, updatePart)
+                            misc.set_by_index(self.d_nodes, np.array(range(startInd*self.FV_size,(startInd+1)*self.FV_size)), scr_gpu) 
 
 
             func2 = mod2.get_function("set") 
